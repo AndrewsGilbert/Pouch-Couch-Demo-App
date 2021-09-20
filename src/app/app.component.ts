@@ -5,7 +5,10 @@ import { SwUpdate } from '@angular/service-worker';
 import PouchDB from 'pouchdb-browser';
 import PouchDBFind from 'pouchdb-find';
 import { interval } from 'rxjs';
+import CryptoPouch from 'crypto-pouch';
+
 PouchDB.plugin(PouchDBFind);
+PouchDB.plugin(CryptoPouch);
 
 
 
@@ -62,6 +65,8 @@ export class AppComponent {
   });
 
   constructor(updates:SwUpdate, appRef:ApplicationRef){
+
+    this.ldb.crypto('123456')
 
     if(navigator.onLine === true){
       console.log('Intially online')
