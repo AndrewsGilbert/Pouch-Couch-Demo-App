@@ -5,12 +5,10 @@ import { SwUpdate } from '@angular/service-worker';
 import PouchDB from 'pouchdb-browser';
 import PouchDBFind from 'pouchdb-find';
 import { interval } from 'rxjs';
-import CryptoPouch from 'crypto-pouch';
-
 PouchDB.plugin(PouchDBFind);
+
+import CryptoPouch from 'crypto-pouch';
 PouchDB.plugin(CryptoPouch);
-
-
 
 type docConfig = {
   _id:string
