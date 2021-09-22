@@ -37,6 +37,7 @@ export class AppComponent {
   @Input() upVotedData:any = []
   @Input() latestNewsData:any = []
  
+  startTime = performance.now()
  
   ldb:any = new PouchDB('local')
 
@@ -129,12 +130,18 @@ export class AppComponent {
 
   intitialDatafromDB(db:any){
 
+    let endTime:number
+
     db.query('allDocViews',{descending:true}).then( (result:any) => {
       this.data = result.rows
+      endTime = performance.now()
+      console.log(`Call to doSomething took ${endTime - this.startTime} milliseconds`)
     }).catch( (err:any) => {
       this.allDocView(db)
       console.log(err);
     });
+    
+    
     
   }
 
@@ -293,6 +300,8 @@ export class AppComponent {
   }
 
 
+
+  
 
 }
 
